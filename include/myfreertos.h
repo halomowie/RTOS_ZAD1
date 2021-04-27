@@ -5,8 +5,8 @@
  *      Author: bodek
  */
 
-#ifndef INC_FREERTOS_H_
-#define INC_FREERTOS_H_
+#ifndef INC_MYFREERTOS_H_
+#define INC_MYFREERTOS_H_
 
 float load;
 volatile unsigned thread_nr;
@@ -17,4 +17,4 @@ void DefaultTask(void *argument);
 
 void led_task_init(unsigned uxPriority);
 
-#endif /* INC_FREERTOS_H_ */
+#endif /* INC_MYFREERTOS_H_ */
