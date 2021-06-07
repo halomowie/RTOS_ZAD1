@@ -90,9 +90,10 @@ main(int argc, char* argv[])
   MX_GPIO_Init();
 
   /* stworzenie i inicjalizacja wszystkich zadań */
-  xTaskCreate(DefaultTask, "Default", configMINIMAL_STACK_SIZE, NULL, 2, NULL);
-  led_task_init( 5 );
-
+  //xTaskCreate(DefaultTask, "Default", configMINIMAL_STACK_SIZE, NULL, 2, NULL);
+  //led_task_init( 5 );
+  xTaskCreate(FirstTask, "First", configMINIMAL_STACK_SIZE, NULL, 2, NULL);
+  xTaskCreate(SecondTask, "Second", configMINIMAL_STACK_SIZE, NULL, 2, NULL);
   /* start FreeRTOS'a */
   vTaskStartScheduler();
 

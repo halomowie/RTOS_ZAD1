@@ -56,8 +56,8 @@
 /* #define configUSE_PORT_OPTIMISED_TASK_SELECTION	0*/
 /* #define configMAX_PRIORITIES					( 56 ) */
 #define configUSE_PREEMPTION              1
-#define configUSE_IDLE_HOOK               0
-#define configUSE_TICK_HOOK               0
+#define configUSE_IDLE_HOOK               1
+#define configUSE_TICK_HOOK               1
 #define configMAX_PRIORITIES              (7)
 #define configSUPPORT_STATIC_ALLOCATION   0
 #define configCPU_CLOCK_HZ                (SystemCoreClock)
@@ -79,9 +79,9 @@
 
 
 /* Functions needed when configGENERATE_RUN_TIME_STATS is on */
-// #define configGENERATE_RUN_TIME_STATS     1
-// #define portCONFIGURE_TIMER_FOR_RUN_TIME_STATS()
-// #define portGET_RUN_TIME_COUNTER_VALUE()			xTaskGetTickCountFromISR()
+#define configGENERATE_RUN_TIME_STATS     1
+#define portCONFIGURE_TIMER_FOR_RUN_TIME_STATS()
+#define portGET_RUN_TIME_COUNTER_VALUE()			xTaskGetTickCountFromISR()
 
 /* Co-routine definitions. */
 #define configUSE_CO_ROUTINES           0

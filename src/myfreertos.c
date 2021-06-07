@@ -61,6 +61,8 @@ void vApplicationIdleHook(void);
 void vApplicationTickHook(void);
 void vApplicationStackOverflowHook(xTaskHandle xTask, signed char *pcTaskName);
 void vApplicationMallocFailedHook(void);
+void FirstTask(void *argument);
+void SecondTask(void *argument);
 
 /* USER CODE BEGIN 1 */
 /* Functions needed when configGENERATE_RUN_TIME_STATS is on */
@@ -87,6 +89,7 @@ __weak void vApplicationIdleHook( void )
    important that vApplicationIdleHook() is permitted to return to its calling
    function, because it is the responsibility of the idle task to clean up
    memory allocated by the kernel to any task that has since been deleted. */
+	LED3_TOGGLE();
 }
 /* USER CODE END 2 */
 
@@ -100,6 +103,7 @@ __weak void vApplicationTickHook( void )
    functions can be used (those that end in FromISR()). */
 //	TaskHandle_t current_task = xTaskGetCurrentTaskHandle();
 //	led_id = uxTaskGetTaskNumber(current_task);
+	LED4_TOGGLE();
 }
 /* USER CODE END 3 */
 
@@ -141,6 +145,45 @@ void DefaultTask(void *argument) {
 	  printf("%d\n",(int)iLicznik);
 	  vTaskDelay(1000);
   }
+}
+
+int CPU_work(int czas_obliczen_ms){
+	int a = 21;
+	int b = 24;
+	int wynik = 0;
+	TickType_t workTime = czas_obliczen_ms + xTaskGetTickCount();
+
+	while(xTaskGetTickCount()<workTime){
+		wynik = a+b;
+	}
+	return wynik;
+}
+
+void FirstTask(void *argument){
+	UNUSED(argument);
+
+
+
+	for(;;){
+		TickType_t workTime = xTaskGetTickCount();
+		LED1_TOGGLE();
+		CPU_work(30);
+		LED1_TOGGLE();
+		vTaskDelayUntil(&workTime, 95);
+	}
+}
+
+void SecondTask(void *argument){
+	UNUSED(argument);
+
+
+	for(;;){
+		TickType_t workTime = xTaskGetTickCount();
+		LED2_TOGGLE();
+		CPU_work(15);
+		LED2_TOGGLE();
+		vTaskDelayUntil(&workTime, 33);
+	}
 }
 
 struct params {
